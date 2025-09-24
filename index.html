@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Store - iPhones Importados EUA | Seminovos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            color: #007AFF;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Menu Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .highlight {
+            background-color: #007AFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #007AFF;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background-color: #0056CC;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Filtros */
+        .filters {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background-color: #f5f5f7;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #007AFF;
+            color: white;
+        }
+        
+        /* Produtos */
+        .products {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .battery-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .import-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #FF9500;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f5f5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 160px;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+        
+        .product-specs {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #007AFF;
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+        
+        .product-btn {
+            display: block;
+            text-align: center;
+            background-color: #25D366;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .product-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        /* Destaques */
+        .features {
+            background-color: #f5f5f7;
+            padding: 70px 0;
+            margin: 50px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #007AFF;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            color: #86868b;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1d1d1f;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #86868b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #86868b;
+            font-size: 14px;
+        }
+        
+        /* WhatsApp Flutuante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 20px;
+            }
+            
+            .contact-info {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .hero {
+                padding: 80px 20px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 15px;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 26px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 24px;
+            }
+            
+            .hero p {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .product-info {
+                padding: 15px;
+            }
+            
+            .product-title {
+                font-size: 16px;
+            }
+            
+            .product-price {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-apple"></i>
+                    <h1>iPhone Store</h1>
+                </div>
+                <div class="contact-info">
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre os iPhones importados" class="whatsapp-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Fale Conosco
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>iPhones Importados dos EUA</h2>
+            <p>Aparelhos <span class="highlight">seminovos</span> com bateria a partir de <span class="highlight">80%</span>. Modelos do iPhone 13 ao iPhone 16, do normal ao Pro Max.</p>
+            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre os iPhones importados" class="cta-button" target="_blank">
+                <i class="fab fa-whatsapp"></i> Fale Conosco pelo WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="container">
+        <div class="filters">
+            <h3 class="filter-title">Filtrar por Modelo:</h3>
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="iphone13">iPhone 13</button>
+                <button class="filter-btn" data-filter="iphone14">iPhone 14</button>
+                <button class="filter-btn" data-filter="iphone15">iPhone 15</button>
+                <button class="filter-btn" data-filter="iphone16">iPhone 16</button>
+                <button class="filter-btn" data-filter="pro">Pro</button>
+                <button class="filter-btn" data-filter="pro-max">Pro Max</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Nossos iPhones</h2>
+            <div class="product-grid">
+                <!-- iPhone 13 -->
+                <div class="product-card" data-category="iphone13">
+                    <div class="battery-badge">Bateria: 85%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-finish-select-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1657642503894" alt="iPhone 13">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 13</h3>
+                        <p class="product-specs">128GB • Tela 6.1" • Câmera Dupla</p>
+                        <div class="product-price">R$ 2.899,00</div>
+                        <p class="product-description">Sistema de câmera dupla avançado. Chip A15 Bionic. Bateria para o dia todo.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 13" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 13 Pro -->
+                <div class="product-card" data-category="iphone13 pro">
+                    <div class="battery-badge">Bateria: 82%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-finish-select-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1657642503664" alt="iPhone 13 Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 13 Pro</h3>
+                        <p class="product-specs">256GB • Tela 6.1" • Câmera Tripla</p>
+                        <div class="product-price">R$ 3.499,00</div>
+                        <p class="product-description">Tela ProMotion. Sistema de câmera Pro com modo Macro. A15 Bionic.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 13 Pro" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 13 Pro Max -->
+                <div class="product-card" data-category="iphone13 pro-max">
+                    <div class="battery-badge">Bateria: 87%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-finish-select-202207?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1657642503664" alt="iPhone 13 Pro Max">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 13 Pro Max</h3>
+                        <p class="product-specs">512GB • Tela 6.7" • Câmera Tripla</p>
+                        <div class="product-price">R$ 3.999,00</div>
+                        <p class="product-description">Maior tela iPhone. Maior duração de bateria. Sistema de câmera Pro mais avançado.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 13 Pro Max" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 14 -->
+                <div class="product-card" data-category="iphone14">
+                    <div class="battery-badge">Bateria: 84%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1661026582322" alt="iPhone 14">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 14</h3>
+                        <p class="product-specs">128GB • Tela 6.1" • Câmera Dupla</p>
+                        <div class="product-price">R$ 3.299,00</div>
+                        <p class="product-description">Recursos de segurança inovadores. Câmera grande-angular de 12 MP. Chip A15 Bionic.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 14" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 14 Pro -->
+                <div class="product-card" data-category="iphone14 pro">
+                    <div class="battery-badge">Bateria: 81%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663790291486" alt="iPhone 14 Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 14 Pro</h3>
+                        <p class="product-specs">256GB • Tela 6.1" • Câmera 48MP</p>
+                        <div class="product-price">R$ 4.199,00</div>
+                        <p class="product-description">Dynamic Island. Always-On display. Câmera de 48 MP. O poder é Pro.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 14 Pro" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 14 Pro Max -->
+                <div class="product-card" data-category="iphone14 pro-max">
+                    <div class="battery-badge">Bateria: 86%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663790291486" alt="iPhone 14 Pro Max">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 14 Pro Max</h3>
+                        <p class="product-specs">512GB • Tela 6.7" • Câmera 48MP</p>
+                        <div class="product-price">R$ 4.799,00</div>
+                        <p class="product-description">Maior tela iPhone. Maior duração de bateria. Câmera de 48 MP revolucionária.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 14 Pro Max" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 15 -->
+                <div class="product-card" data-category="iphone15">
+                    <div class="battery-badge">Bateria: 89%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692846358478" alt="iPhone 15">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 15</h3>
+                        <p class="product-specs">128GB • Tela 6.1" • Câmera 48MP</p>
+                        <div class="product-price">R$ 4.299,00</div>
+                        <p class="product-description">Câmera de 48 MP para fotos com super-resolução. Dynamic Island. Chip A16 Bionic.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 15" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 15 Pro -->
+                <div class="product-card" data-category="iphone15 pro">
+                    <div class="battery-badge">Bateria: 83%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692846359318" alt="iPhone 15 Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 15 Pro</h3>
+                        <p class="product-specs">256GB • Tela 6.1" • Câmera 48MP</p>
+                        <div class="product-price">R$ 5.199,00</div>
+                        <p class="product-description">Titanium. So strong. So light. So Pro. A17 Pro chip. A mais poderosa inovação em iPhone.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 15 Pro" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 15 Pro Max -->
+                <div class="product-card" data-category="iphone15 pro-max">
+                    <div class="battery-badge">Bateria: 88%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692846359318" alt="iPhone 15 Pro Max">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 15 Pro Max</h3>
+                        <p class="product-specs">512GB • Tela 6.7" • Câmera 48MP</p>
+                        <div class="product-price">R$ 5.999,00</div>
+                        <p class="product-description">O iPhone mais Pro de todos os tempos. Teleobjetiva de 5x. Titanium. A17 Pro.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 15 Pro Max" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 16 -->
+                <div class="product-card" data-category="iphone16">
+                    <div class="battery-badge">Bateria: 92%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692846358478" alt="iPhone 16">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 16</h3>
+                        <p class="product-specs">128GB • Tela 6.1" • Câmera 48MP</p>
+                        <div class="product-price">R$ 4.899,00</div>
+                        <p class="product-description">Design inovador. Câmera de 48 MP aprimorada. Chip A17 Bionic. Novas cores.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 16" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 16 Pro -->
+                <div class="product-card" data-category="iphone16 pro">
+                    <div class="battery-badge">Bateria: 90%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692846359318" alt="iPhone 16 Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 16 Pro</h3>
+                        <p class="product-specs">256GB • Tela 6.3" • Câmera 48MP</p>
+                        <div class="product-price">R$ 5.799,00</div>
+                        <p class="product-description">Tela maior. Design refinado. Câmeras Pro aprimoradas. Chip A18 Pro.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 16 Pro" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+                
+                <!-- iPhone 16 Pro Max -->
+                <div class="product-card" data-category="iphone16 pro-max">
+                    <div class="battery-badge">Bateria: 91%</div>
+                    <div class="import-badge">Importado EUA</div>
+                    <div class="product-image">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692846359318" alt="iPhone 16 Pro Max">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 16 Pro Max</h3>
+                        <p class="product-specs">1TB • Tela 6.9" • Câmera 48MP</p>
+                        <div class="product-price">R$ 6.799,00</div>
+                        <p class="product-description">Maior tela iPhone da história. Bateria com duração excepcional. Câmera mais avançada.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre o iPhone 16 Pro Max" class="product-btn" target="_blank">Comprar no WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Por que Comprar na iPhone Store?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Garantia de 6 Meses</h3>
+                    <p class="feature-description">Todos os nossos produtos possuem garantia de 6 meses contra defeitos de fabricação.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                    <h3 class="feature-title">Bateria a partir de 80%</h3>
+                    <p class="feature-description">Todos os aparelhos possuem bateria com saúde mínima de 80%, testada e aprovada.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="feature-title">Entrega Rápida</h3>
+                    <p class="feature-description">Entregamos em todo o Brasil com frete grátis para compras acima de R$ 3.000,00.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Compra Segura</h3>
+                    <p class="feature-description">Seus dados estão protegidos. Processo de compra 100% seguro via WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>iPhone Store</h3>
+                    <p>Loja especializada em iPhones importados dos EUA, seminovos, com bateria a partir de 80%.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#">Produtos</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-envelope"></i> contato@iphonestore.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 iPhone Store. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de informações sobre os iPhones importados" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Filtros de produtos
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remover classe active de todos os botões
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Adicionar classe active ao botão clicado
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    productCards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const categories = card.getAttribute('data-category').split(' ');
+                            if (categories.includes(filterValue)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Adicionar efeito de contagem para os preços (apenas visual)
+            const prices = document.querySelectorAll('.product-price');
+            prices.forEach(price => {
+                const originalText = price.textContent;
+                price.textContent = 'R$ 0,00';
+                
+                let current = 0;
+                const target = parseFloat(originalText.replace('R$ ', '').replace('.', '').replace(',', '.'));
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    const formatted = new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    }).format(current);
+                    
+                    price.textContent = formatted;
+                }, 30);
+            });
+            
+            // Adicionar animação de entrada para os produtos
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            productCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                observer.observe(card);
+            });
+            
+            // Menu mobile toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const contactInfo = document.querySelector('.contact-info');
+            
+            menuToggle.addEventListener('click', () => {
+                contactInfo.style.display = contactInfo.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Ajustar menu em redimensionamento
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    contactInfo.style.display = 'flex';
+                } else {
+                    contactInfo.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
